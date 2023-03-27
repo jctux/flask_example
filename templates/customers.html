@@ -1,0 +1,51 @@
+{% block content %}
+  <h1>Customers</h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for customer in customers %}
+        <tr>
+          <td>{{ customer.id }}</td>
+          <td>{{ customer.name }}</td>
+          <td>{{ customer.email }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h1>Invoice #{{ invoice.id }}</h1>
+  <p><strong>Amount:</strong> ${{ invoice.amount }}</p>
+  <p><strong>Customer:</strong> {{ invoice.customer.name }}</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in invoice.items %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ item.price }}</td>
+          <td>${{ item.quantity * item.price }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" align="right"><strong>Total:</strong></td>
+        <td>${{ invoice.amount }}</td>
+      </tr>
+    </tfoot>
+  </table>
+{% endblock %}
